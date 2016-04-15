@@ -1,0 +1,37 @@
+v. 0.1.1
+
+	Changes
+
+-Player and Platform images have been updated
+-More platforms have been added
+-Player class's "Move" method has been merged into the "Update" method
+-Addition of a "Fall" method to the player class
+
+	Fixes
+
+-Player now falls when not on a platform
+-Player now stands on top of platforms when landing as opposed to
+merging inside them
+
+--------------------------------------------------------------------
+
+
+v. 0.1
+
+	Additions
+
+-Added Player Class
+	-Player objects can jump and move left and right
+	-Player objects collide with platforms
+-Added Platform Class
+	-Adds the ability to create platforms for the player to stand on
+	-Scroll right to left across the screen with adjustable speed
+
+	Bugs and Issues
+
+-Player
+	-Player will not fall when not on a platform
+	-Player will land partly inside of platforms instead of on top
+	of them
+	-Velocity downwards increases dramatically after the max height is
+	reached

@@ -1,0 +1,61 @@
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\big_log.png
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Water-Bottle.png
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.exe
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.pdb
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.exe
+C:\Users\Aphelion\Documents\Visual Studio 2015\Projects\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.pdb
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.exe
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.pdb
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Water-Bottle.png
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.exe
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.pdb
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\button_1.png
+C:\Users\Aphelion\Documents\src\Endless Nameless\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Lizard.xnb
+E:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.exe
+E:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.pdb
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\button_1.png
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Water-Bottle.png
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Lizard.xnb
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.exe
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.pdb
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\MonoGame.Framework.dll
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\OpenTK.dll
+E:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache
+E:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\char_music_1.png
+J:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.exe
+J:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.pdb
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\button_1.png
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\char_music_1.png
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Water-Bottle.png
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Lizard.xnb
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.exe
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.pdb
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\MonoGame.Framework.dll
+J:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\OpenTK.dll
+J:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache
+K:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.exe
+K:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.pdb
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\button_1.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\char_music_1.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Water-Bottle.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Lizard.xnb
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.exe
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.pdb
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\MonoGame.Framework.dll
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\OpenTK.dll
+K:\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\backbutton.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\backSelect.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\exitbutton.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\exitSelect.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\optionbutton.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\optionSelect.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\startbutton.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\startSelect.png
+K:\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\mainFont.xnb
