@@ -1,3 +1,28 @@
+v. 0.2.0
+
+	Additions
+
+-Merging of the menus and game classes
+	-Main Menu now appears before playing the game
+	-Contains a temporary options menu
+	-Contains options, exit and play buttons 
+-New Duck method added to the player class to allow for additional
+obstacles to avoid
+-New enum to handle player sprite changes
+
+	Changes
+
+-Reworked platform collisions
+	-Player now rises through the platforms before landing on them
+	-Some slight collision adjustments
+-The updating of the player's y coordinates have been moved to the Update
+method
+-Detection of input for jumping has been moved to the Update method
+	-DetectJump() is now a helper method
+
+--------------------------------------------------------------------
+
+
 v. 0.1.1
 
 	Changes

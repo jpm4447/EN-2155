@@ -127,8 +127,8 @@ namespace Endless_Nameless
             player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
             platforms = new List<Platform>();
             platforms.Add(new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
-            platforms.Add(new Platform(new Rectangle(700, 200, 300, 50), groundImg));
-            platforms.Add(new Platform(new Rectangle(1000, 300, 300, 50), groundImg));
+            platforms.Add(new Platform(new Rectangle(700, 400, 300, 50), groundImg));
+            platforms.Add(new Platform(new Rectangle(700, 100, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
@@ -310,36 +310,33 @@ namespace Endless_Nameless
                     break;
 
                 case GameMode.Game:
-                    //Updating of positions for the game
-                    player1.DetectJump();
+                    //Gives the player a velocity downwards
                     player1.Fall();
 
-                    //Checks the player against each platform and stops them if they collide with one
-                    foreach (Platform plat in platforms)
-                    {
-                        if (player1.IsColliding(plat.CollisionBox))
-                        {
-                            player1.Stop();
+                    //Check for collisions and updates player position if necessary
+                    player1.CheckCollisions(platforms);
 
-                            //Readjusts the player's position in coordination with the platform dimensions
-                            if (player1.PosY > plat.CollisionBox.Y - player1.CollisionRect.Height && player1.PosY < plat.CollisionBox.Y - plat.CollisionBox.Height / 4)
-                            {
-                                player1.PosY = plat.CollisionBox.Y - player1.CollisionRect.Height + 1;
-                            }
-                        }
-                    }
-
-                    //Rest of position updates
+                    //Handles player input and position updates for the player
                     player1.Update(gameTime);
+
+                    //Platform position updates
                     foreach (Platform plat in platforms)
                     {
-                        plat.Update(gameTime, 6);
+                        plat.Update(gameTime, 2);
                     }
 
                     //Temporary code for the event of a game over
                     if (player1.CollisionRect.Y >= GraphicsDevice.Viewport.Height)
                     {
-                        Exit();
+                        gameMode = GameMode.Menu;
+                        player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
+
+                        platforms[0] = (new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
+                        platforms[1] = (new Platform(new Rectangle(700, 400, 300, 50), groundImg));
+                        platforms[2] = (new Platform(new Rectangle(700, 100, 300, 50), groundImg));
+                        platforms[3] = (new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
+                        platforms[4] = (new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
+                        platforms[5] = (new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
                     }
                     break;
             }
@@ -376,13 +373,15 @@ namespace Endless_Nameless
 
                     // Draws the content to the screen
                     spriteBatch.Begin();
-                    spriteBatch.Draw(image, player1.CollisionRect, Color.White);
 
                     //Loops through the platforms list and draws each platform onto the screen
                     foreach (Platform plat in platforms)
                     {
                         spriteBatch.Draw(groundImg, plat.CollisionBox, Color.White);
                     }
+
+                    spriteBatch.Draw(image, player1.CollisionRect, Color.White);
+
                     spriteBatch.End();
                     break;
             }
