@@ -10,6 +10,7 @@ namespace Endless_Nameless
 {
     //Author(s):  Logan Lesoine
     //Class to allow the creation of platforms
+
     class Platform
     {
         //Attribute creation

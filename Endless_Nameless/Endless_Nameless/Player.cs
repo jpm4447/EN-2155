@@ -10,11 +10,13 @@ namespace Endless_Nameless
 {
     //Author(s):  Logan Lesoine
     //Class to allow the creation of a player object
+
     class Player
     {
         /********************|
         |*****Attributes*****|
         |********************/
+
         private KeyboardState kStateCurr;
         private KeyboardState kStatePrev;
         
@@ -25,9 +27,17 @@ namespace Endless_Nameless
         private float slideTime;
         private float veloc;
 
+        // animation attributes
+        int frame;
+        double timePerFrame = 500;
+        int numFrames = 4;
+        int framesElapsed;
+        const int PLAYER_HEIGHT = 64;
+        const int PLAYER_WIDTH = 32;
+
         enum Animation
         {
-            Jump, Duck, Normal
+            Jump, Duck, Move
         }
 
         Animation animations;
@@ -59,6 +69,9 @@ namespace Endless_Nameless
         //Method that manages most of the changes for draw time
         public void Update(GameTime gameTime)
         {
+            framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+            frame = framesElapsed % numFrames + 1;
+
             //Detects player input for jumping
             DetectJump();
 
@@ -250,9 +263,9 @@ namespace Endless_Nameless
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
-
+            spriteBatch.Draw(texture, pos, new Rectangle(32 + frame * 64, 0, 64, 128), Color.White);
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Endless_Nameless
 {
@@ -15,10 +17,14 @@ namespace Endless_Nameless
 
         //Extra attribute creation
         Texture2D image;
+        Texture2D playerImage;
         Texture2D groundImg;
         Vector2 coord;
         Player player1;
         List<Platform> platforms;
+        double timer;
+        double timeLived;
+        ScoreKeeper keeper;
 
         // Jake's stuff
         // Initializations
@@ -56,6 +62,10 @@ namespace Endless_Nameless
         SpriteFont font;
         Vector2 fontLoc;
 
+        // chunk generation sources
+        string[] chunkSource = new string[16];
+        Chunk[] chunk;
+
         // Menu States
         enum MenuMode
         {
@@ -67,7 +77,8 @@ namespace Endless_Nameless
         enum GameMode
         {
             Menu,
-            Game
+            Game,
+            Gameover
         }
         GameMode gameMode;
 
@@ -132,7 +143,22 @@ namespace Endless_Nameless
             platforms.Add(new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
-            
+
+            //Initialization of the ScoreKeeper
+            keeper = new ScoreKeeper();
+
+            // load in chunks
+            int count = 0; // temp variable to assits with initialization of chunks
+            while(chunkSource[count] != null)
+            {
+                count++;
+            }
+            chunk = new Chunk[count]; 
+
+            for(int x = 0; x < count; x++)
+            {
+                chunk[x] = new Chunk(chunkSource[x], groundImg);
+            }
 
             base.Initialize();
 
@@ -149,7 +175,8 @@ namespace Endless_Nameless
 
             // TODO: use this.Content to load your game content here
             image = Content.Load<Texture2D>("char_music_1");
-            groundImg = Content.Load<Texture2D>("button_1");
+            playerImage = Content.Load<Texture2D>("SpriteSheet");
+            groundImg = Content.Load<Texture2D>("platform");
 
             // JAKE
             startButton = Content.Load<Texture2D>("startbutton");
@@ -161,6 +188,16 @@ namespace Endless_Nameless
             backButton = Content.Load<Texture2D>("backbutton");
             backSelect = Content.Load<Texture2D>("backSelect");
             font = Content.Load<SpriteFont>("mainFont");
+
+            // Chunk generation sources
+            chunkSource[0] = "start.txt";
+            chunkSource[1] = "source1.txt";
+            chunkSource[2] = "source2.txt";
+            chunkSource[3] = "source3.txt";
+            chunkSource[4] = "source4.txt";
+            chunkSource[5] = "source5.txt";
+            chunkSource[6] = "source6.txt";
+
         }
 
         /// <summary>
@@ -182,7 +219,7 @@ namespace Endless_Nameless
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            switch(gameMode)
+            switch (gameMode)
             {
                 case GameMode.Menu:
                     // Button placement scaling
@@ -310,6 +347,7 @@ namespace Endless_Nameless
                     break;
 
                 case GameMode.Game:
+
                     //Gives the player a velocity downwards
                     player1.Fall();
 
@@ -325,21 +363,53 @@ namespace Endless_Nameless
                         plat.Update(gameTime, 2);
                     }
 
+                    // chunk position updates
+                    foreach (Chunk c in chunk)
+                    {
+                        c.Update(gameTime, 2);
+                    }
+
+                    //Incrementation of the timer to show the correct amount of time the player has been
+                    //alive for
+                    timer += gameTime.ElapsedGameTime.TotalSeconds;
+
                     //Temporary code for the event of a game over
                     if (player1.CollisionRect.Y >= GraphicsDevice.Viewport.Height)
                     {
-                        gameMode = GameMode.Menu;
+                        gameMode = GameMode.Gameover;
                         player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
 
+                        
                         platforms[0] = (new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
                         platforms[1] = (new Platform(new Rectangle(700, 400, 300, 50), groundImg));
                         platforms[2] = (new Platform(new Rectangle(700, 100, 300, 50), groundImg));
                         platforms[3] = (new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
                         platforms[4] = (new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
                         platforms[5] = (new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
+
+                        //Assigns the survived time to a new value and updates the score list if need be
+                        timeLived = timer;
+                        keeper.UpdateScores(timeLived);
+
+                        //When the player recieves a gameover the timer is reset
+                        timer = 0;
+                    }
+                    break;
+
+                    //Case for when the player reaches the game over screen
+                case GameMode.Gameover:
+                    timer += gameTime.ElapsedGameTime.TotalSeconds;
+
+                    //Holds on the screen for an x amount of time before returning to the main menu
+                    if(timer >= 3)
+                    {
+                        gameMode = GameMode.Menu;
+                        timer = 0;
                     }
                     break;
             }
+
+            
 
             base.Update(gameTime);
         }
@@ -369,7 +439,7 @@ namespace Endless_Nameless
                     }
                     break;
                 case GameMode.Game:
-                    GraphicsDevice.Clear(Color.CornflowerBlue);
+                    GraphicsDevice.Clear(Color.White);
 
                     // Draws the content to the screen
                     spriteBatch.Begin();
@@ -380,7 +450,30 @@ namespace Endless_Nameless
                         spriteBatch.Draw(groundImg, plat.CollisionBox, Color.White);
                     }
 
-                    spriteBatch.Draw(image, player1.CollisionRect, Color.White);
+                    //Shows the amount of time the player has been alive for
+                    spriteBatch.DrawString(font, "Time alive:  " + String.Format("{0 : 0.00}", timer), new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 0), Color.Black);
+
+                    player1.Draw(spriteBatch, playerImage);                      // animated character
+                    // spriteBatch.Draw(image, player1.CollisionRect, Color.White);    // static character
+
+                    spriteBatch.End();
+                    break;
+
+                    //Case for when the player loses the game
+                case GameMode.Gameover:
+                    GraphicsDevice.Clear(Color.LightGreen);
+
+                    // Begins the spriteBach
+                    spriteBatch.Begin();
+
+                    spriteBatch.DrawString(font, "You have lasted " + String.Format("{0 : 0.00}", timeLived) + " seconds.", new Vector2(GraphicsDevice.Viewport.Width / 2 - 200, 0), Color.Black);
+                    spriteBatch.DrawString(font, "Best Times:", new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 50), Color.Black);
+
+                    //Prints out each of the top high scores for the player
+                    foreach(double time in keeper.HighScores)
+                    {
+                        spriteBatch.DrawString(font, keeper.HighScores.IndexOf(time) + 1 + ":  " + String.Format("{0 : 0.00}", time), new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 100 + (keeper.HighScores.IndexOf(time) * 50)), Color.Black);
+                    }
 
                     spriteBatch.End();
                     break;
