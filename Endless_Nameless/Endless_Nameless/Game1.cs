@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Endless_Nameless
@@ -15,6 +16,7 @@ namespace Endless_Nameless
 
         //Extra attribute creation
         Texture2D image;
+        Texture2D playerImage;
         Texture2D groundImg;
         Vector2 coord;
         Player player1;
@@ -55,6 +57,15 @@ namespace Endless_Nameless
 
         SpriteFont font;
         Vector2 fontLoc;
+
+        // chunk generation sources
+        string[] chunkSource = new string[16];
+        Chunk currChunk;
+        Chunk prevChunk;
+        Chunk[] chunk;
+        const int CHUNK_SOURCE = 7;
+
+        Random rando = new Random();
 
         // Menu States
         enum MenuMode
@@ -132,7 +143,21 @@ namespace Endless_Nameless
             platforms.Add(new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
-            
+
+            // load in chunks
+            /*
+            int count = 0; // temp variable to assits with initialization of chunks
+            while(chunkSource[count] != null)
+            {
+                count++;
+            }
+            chunk = new Chunk[count]; 
+
+            for(int x = 0; x < count; x++)
+            {
+                chunk[x] = new Chunk(chunkSource[x], groundImg);
+            }
+            */
 
             base.Initialize();
 
@@ -149,7 +174,8 @@ namespace Endless_Nameless
 
             // TODO: use this.Content to load your game content here
             image = Content.Load<Texture2D>("char_music_1");
-            groundImg = Content.Load<Texture2D>("button_1");
+            playerImage = Content.Load<Texture2D>("SpriteSheet");
+            groundImg = Content.Load<Texture2D>("platform");
 
             // JAKE
             startButton = Content.Load<Texture2D>("startbutton");
@@ -161,6 +187,16 @@ namespace Endless_Nameless
             backButton = Content.Load<Texture2D>("backbutton");
             backSelect = Content.Load<Texture2D>("backSelect");
             font = Content.Load<SpriteFont>("mainFont");
+
+            // Chunk generation sources
+            chunkSource[0] = "start.txt";
+            chunkSource[1] = "source1.txt";
+            chunkSource[2] = "source2.txt";
+            chunkSource[3] = "source3.txt";
+            chunkSource[4] = "source4.txt";
+            chunkSource[5] = "source5.txt";
+            chunkSource[6] = "source6.txt";
+
         }
 
         /// <summary>
@@ -182,7 +218,7 @@ namespace Endless_Nameless
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            switch(gameMode)
+            switch (gameMode)
             {
                 case GameMode.Menu:
                     // Button placement scaling
@@ -250,6 +286,12 @@ namespace Endless_Nameless
                                 && mouseState.Y <= start.Rect.Y + start.Rect.Height
                                 && mouseState.Y >= start.Rect.Y)
                             {
+                                // generates starting chunks
+                                currChunk = new Chunk(chunkSource[0], groundImg);
+                                currChunk.ChunkStart();
+                                prevChunk = new Chunk(chunkSource[0], groundImg);
+
+
                                 gameMode = GameMode.Game;
                             }
 
@@ -310,6 +352,7 @@ namespace Endless_Nameless
                     break;
 
                 case GameMode.Game:
+                    
                     //Gives the player a velocity downwards
                     player1.Fall();
 
@@ -325,21 +368,47 @@ namespace Endless_Nameless
                         plat.Update(gameTime, 2);
                     }
 
+                    // chunk position updates
+                    /*
+                    foreach (Chunk c in chunk)
+                    {
+                        c.Update(gameTime, 2);
+                    }
+                    */
+                   
+                    // chunk position updates
+                    currChunk.Update(gameTime, 2);
+                    prevChunk.Update(gameTime, 2);
+
+                    // check if new chunk needs to be generated
+                    if (currChunk.CheckChunk() == true)
+                    {
+                        Chunk tempChunk = currChunk;       
+
+                        currChunk = new Chunk(chunkSource[rando.Next(CHUNK_SOURCE)], groundImg); // needs to get stitch values and possible connections
+                        currChunk.ChunkPlace(); // sets chunks farther along after they are created
+                        prevChunk = tempChunk; // sets chunk the player is currently in a new chunk that continues to function
+                    }
+
                     //Temporary code for the event of a game over
                     if (player1.CollisionRect.Y >= GraphicsDevice.Viewport.Height)
                     {
                         gameMode = GameMode.Menu;
                         player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
 
+                        /*
                         platforms[0] = (new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
                         platforms[1] = (new Platform(new Rectangle(700, 400, 300, 50), groundImg));
                         platforms[2] = (new Platform(new Rectangle(700, 100, 300, 50), groundImg));
                         platforms[3] = (new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
                         platforms[4] = (new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
                         platforms[5] = (new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
+                        */
                     }
                     break;
             }
+
+            
 
             base.Update(gameTime);
         }
@@ -369,7 +438,7 @@ namespace Endless_Nameless
                     }
                     break;
                 case GameMode.Game:
-                    GraphicsDevice.Clear(Color.CornflowerBlue);
+                    GraphicsDevice.Clear(Color.White);
 
                     // Draws the content to the screen
                     spriteBatch.Begin();
@@ -380,7 +449,9 @@ namespace Endless_Nameless
                         spriteBatch.Draw(groundImg, plat.CollisionBox, Color.White);
                     }
 
-                    spriteBatch.Draw(image, player1.CollisionRect, Color.White);
+
+                    player1.Draw(spriteBatch, playerImage);                      // animated character
+                    // spriteBatch.Draw(image, player1.CollisionRect, Color.White);    // static character
 
                     spriteBatch.End();
                     break;

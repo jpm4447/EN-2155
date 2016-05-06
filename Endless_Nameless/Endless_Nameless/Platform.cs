@@ -37,6 +37,17 @@ namespace Endless_Nameless
             collisionBox.X -= speed;
         }
 
+        // set platfrom location
+        public void PlatformPlace()
+        {
+            collisionBox.X += 1280;
+        }
+
+        public void PlatformStart()
+        {
+            collisionBox.X += 2560;
+        }
+
         //Method to allow the platforms to draw themselves
         //Does not currently work
         public void Draw(SpriteBatch spriteBach)
