@@ -148,3 +148,33 @@ C:\Users\JPM\Downloads\EN-2155-master\EN-2155-master\EN-2155-master\EN-2155-mast
 C:\Users\JPM\Downloads\EN-2155-master\EN-2155-master\EN-2155-master\EN-2155-master\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\MonoGame.Framework.dll
 C:\Users\JPM\Downloads\EN-2155-master\EN-2155-master\EN-2155-master\EN-2155-master\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\OpenTK.dll
 C:\Users\JPM\Downloads\EN-2155-master\EN-2155-master\EN-2155-master\EN-2155-master\EN-2155-master\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.exe
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.pdb
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\backbutton.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\backSelect.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\button_1.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\char_music_1.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\exitbutton.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\exitSelect.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\obstacle.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\optionbutton.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\optionSelect.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\platform.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\SpriteSheet.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\startbutton.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\startSelect.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Water-Bottle.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source1.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source2.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source3.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source4.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source5.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source6.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\start.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\Lizard.xnb
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\mainFont.xnb
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.exe
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.pdb
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache

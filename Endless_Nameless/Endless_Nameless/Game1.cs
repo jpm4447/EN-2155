@@ -21,6 +21,9 @@ namespace Endless_Nameless
         Vector2 coord;
         Player player1;
         List<Platform> platforms;
+        double timer;
+        double timeLived;
+        ScoreKeeper keeper;
 
         // Jake's stuff
         // Initializations
@@ -78,7 +81,8 @@ namespace Endless_Nameless
         enum GameMode
         {
             Menu,
-            Game
+            Game,
+            Gameover
         }
         GameMode gameMode;
 
@@ -143,6 +147,9 @@ namespace Endless_Nameless
             platforms.Add(new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
+
+            //Initialization of the ScoreKeeper
+            keeper = new ScoreKeeper();
 
             // load in chunks
             /*
@@ -391,19 +398,41 @@ namespace Endless_Nameless
                     }
 
                     //Temporary code for the event of a game over
+                    //Incrementation of the timer to show the correct amount of time the player has been
+                    //alive for
+                    timer += gameTime.ElapsedGameTime.TotalSeconds;
+
+                    //Temporary code for the event of a game over
                     if (player1.CollisionRect.Y >= GraphicsDevice.Viewport.Height)
                     {
-                        gameMode = GameMode.Menu;
+                        gameMode = GameMode.Gameover;
                         player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
 
-                        /*
+
                         platforms[0] = (new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
                         platforms[1] = (new Platform(new Rectangle(700, 400, 300, 50), groundImg));
                         platforms[2] = (new Platform(new Rectangle(700, 100, 300, 50), groundImg));
                         platforms[3] = (new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
                         platforms[4] = (new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
                         platforms[5] = (new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
-                        */
+
+                        //Assigns the survived time to a new value and updates the score list if need be
+                        timeLived = timer;
+                        keeper.UpdateScores(timeLived);
+
+                        //When the player recieves a gameover the timer is reset
+                        timer = 0;
+                    }
+                    break;
+                //Case for when the player reaches the game over screen
+                case GameMode.Gameover:
+                    timer += gameTime.ElapsedGameTime.TotalSeconds;
+
+                    //Holds on the screen for an x amount of time before returning to the main menu
+                    if (timer >= 3)
+                    {
+                        gameMode = GameMode.Menu;
+                        timer = 0;
                     }
                     break;
             }
@@ -452,6 +481,25 @@ namespace Endless_Nameless
 
                     player1.Draw(spriteBatch, playerImage);                      // animated character
                     // spriteBatch.Draw(image, player1.CollisionRect, Color.White);    // static character
+
+                    spriteBatch.End();
+                    break;
+
+                    //Case for when the player loses the game
+                case GameMode.Gameover:
+                    GraphicsDevice.Clear(Color.LightGreen);
+
+                    // Begins the spriteBach
+                    spriteBatch.Begin();
+
+                    spriteBatch.DrawString(font, "You have lasted " + String.Format("{0 : 0.00}", timeLived) + " seconds.", new Vector2(GraphicsDevice.Viewport.Width / 2 - 200, 0), Color.Black);
+                    spriteBatch.DrawString(font, "Best Times:", new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 50), Color.Black);
+
+                    //Prints out each of the top high scores for the player
+                    foreach(double time in keeper.HighScores)
+                    {
+                        spriteBatch.DrawString(font, keeper.HighScores.IndexOf(time) + 1 + ":  " + String.Format("{0 : 0.00}", time), new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 100 + (keeper.HighScores.IndexOf(time) * 50)), Color.Black);
+                    }
 
                     spriteBatch.End();
                     break;
