@@ -14,13 +14,15 @@ namespace Endless_Nameless
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        const int SPEED = 6;
+
         //Extra attribute creation
         Texture2D image;
         Texture2D playerImage;
         Texture2D groundImg;
         Vector2 coord;
         Player player1;
-        List<Platform> platforms;
+        List<Platform> platformList;
         double timer;
         double timeLived;
         ScoreKeeper keeper;
@@ -131,6 +133,11 @@ namespace Endless_Nameless
             // Make mouse visible
             this.IsMouseVisible = true;
 
+            // Original menu mode is "main"
+            menuMode = MenuMode.Main;
+            // Original game mode is "menu..." you start at the menu
+            gameMode = GameMode.Menu;
+
             // Initial button placement
             sX = GraphicsDevice.Viewport.Width / 2 - 100;
             sY = GraphicsDevice.Viewport.Height / 2 - 100;
@@ -156,7 +163,7 @@ namespace Endless_Nameless
             rY = GraphicsDevice.Viewport.Height / 2;
             reset = new Button(rX, rY, rW, rH);
 
-            // Font locations
+            // Font location
             titleFontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 390, 25);
             optionFontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 85, 25);
             gameOverFontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 85, 25);
@@ -164,6 +171,7 @@ namespace Endless_Nameless
             //Initialization of the player and platforms
             coord = new Vector2(100, 100);
             player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
+            /*
             platforms = new List<Platform>();
             platforms.Add(new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(700, 400, 300, 50), groundImg));
@@ -171,6 +179,9 @@ namespace Endless_Nameless
             platforms.Add(new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
             platforms.Add(new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
+            */
+            
+            platformList = new List<Platform>();
 
             //Initialization of the ScoreKeeper
             keeper = new ScoreKeeper();
@@ -336,10 +347,20 @@ namespace Endless_Nameless
                                 && mouseState.Y >= start.Rect.Y)
                             {
                                 // generates starting chunks
-                                currChunk = new Chunk(chunkSource[0], groundImg);
-                                currChunk.ChunkStart();
-                                prevChunk = new Chunk(chunkSource[0], groundImg);
+                                platformList.Clear();
 
+                                currChunk = new Chunk("source1.txt", groundImg);
+                                currChunk.ChunkStart();
+                                prevChunk = new Chunk("start.txt", groundImg);
+
+                                for (int x = 0; x < currChunk.Platforms.Length; x++)
+                                {
+                                    platformList.Add(currChunk.Platforms[x]);
+                                }
+                                for (int x = 0; x < prevChunk.Platforms.Length; x++)
+                                {
+                                    platformList.Add(prevChunk.Platforms[x]);
+                                }
 
                                 gameMode = GameMode.Game;
                             }
@@ -371,7 +392,6 @@ namespace Endless_Nameless
                     {
                         bool clicked;
                         reset.Texture = resetTexture;
-
 
                         // Options button was clicked, mouse released
                         if (mouseState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
@@ -454,10 +474,20 @@ namespace Endless_Nameless
                                 && mouseState.Y >= playAgainButton.Rect.Y)
                             {
                                 // generates starting chunks
-                                currChunk = new Chunk(chunkSource[0], groundImg);
-                                currChunk.ChunkStart();
-                                prevChunk = new Chunk(chunkSource[0], groundImg);
+                                platformList.Clear();
 
+                                currChunk = new Chunk("source1.txt", groundImg);
+                                currChunk.ChunkStart();
+                                prevChunk = new Chunk("start.txt", groundImg);
+
+                                for (int x = 0; x < currChunk.Platforms.Length; x++)
+                                {
+                                    platformList.Add(currChunk.Platforms[x]);
+                                }
+                                for (int x = 0; x < prevChunk.Platforms.Length; x++)
+                                {
+                                    platformList.Add(prevChunk.Platforms[x]);
+                                }
 
                                 gameMode = GameMode.Game;
                             }
@@ -474,7 +504,6 @@ namespace Endless_Nameless
 
                         mStatePrev = mouseState;
                     }
-                    
                     break;
 
                 case GameMode.Game:
@@ -483,16 +512,18 @@ namespace Endless_Nameless
                     player1.Fall();
 
                     //Check for collisions and updates player position if necessary
-                    player1.CheckCollisions(platforms);
+                    player1.CheckCollisions(platformList);
 
                     //Handles player input and position updates for the player
                     player1.Update(gameTime);
 
                     //Platform position updates
-                    foreach (Platform plat in platforms)
+                    /*
+                    foreach (Platform plat in platformList)
                     {
                         plat.Update(gameTime, 2);
                     }
+                    */
 
                     // chunk position updates
                     /*
@@ -503,8 +534,8 @@ namespace Endless_Nameless
                     */
                    
                     // chunk position updates
-                    currChunk.Update(gameTime, 2);
-                    prevChunk.Update(gameTime, 2);
+                    currChunk.Update(gameTime, SPEED);
+                    prevChunk.Update(gameTime, SPEED);
 
                     // check if new chunk needs to be generated
                     if (currChunk.CheckChunk() == true)
@@ -514,6 +545,18 @@ namespace Endless_Nameless
                         currChunk = new Chunk(chunkSource[rando.Next(CHUNK_SOURCE)], groundImg); // needs to get stitch values and possible connections
                         currChunk.ChunkPlace(); // sets chunks farther along after they are created
                         prevChunk = tempChunk; // sets chunk the player is currently in a new chunk that continues to function
+
+                        // reset platform list
+                        platformList.Clear();
+
+                        for (int x = 0; x < currChunk.Platforms.Length; x++)
+                        {
+                            platformList.Add(currChunk.Platforms[x]);
+                        }
+                        for (int x = 0; x < prevChunk.Platforms.Length; x++)
+                        {
+                            platformList.Add(prevChunk.Platforms[x]);
+                        }
                     }
 
                     //Temporary code for the event of a game over
@@ -527,13 +570,14 @@ namespace Endless_Nameless
                         gameMode = GameMode.Gameover;
                         player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
 
-
+                        /*
                         platforms[0] = (new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
                         platforms[1] = (new Platform(new Rectangle(700, 400, 300, 50), groundImg));
                         platforms[2] = (new Platform(new Rectangle(700, 100, 300, 50), groundImg));
                         platforms[3] = (new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
                         platforms[4] = (new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
                         platforms[5] = (new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
+                        */
 
                         //Assigns the survived time to a new value and updates the score list if need be
                         timeLived = timer;
@@ -595,13 +639,17 @@ namespace Endless_Nameless
                     spriteBatch.Begin();
 
                     //Loops through the platforms list and draws each platform onto the screen
-                    foreach (Platform plat in platforms)
+                    foreach (Platform plat in platformList)
                     {
                         spriteBatch.Draw(groundImg, plat.CollisionBox, Color.White);
                     }
+
+                    // draws out chunks
+                    currChunk.Draw(spriteBatch);
+                    prevChunk.Draw(spriteBatch);
+
                     //Shows the amount of time the player has been alive for
                     spriteBatch.DrawString(scoreFont, "Time alive:  " + String.Format("{0 : 0.00}", timer), new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 0), Color.Black);
-
 
                     player1.Draw(spriteBatch, playerImage);                      // animated character
                     // spriteBatch.Draw(image, player1.CollisionRect, Color.White);    // static character
@@ -656,7 +704,6 @@ namespace Endless_Nameless
             playAgainButton.Draw(spriteBatch);
             spriteBatch.End();
         }
-
 
     }
 }
