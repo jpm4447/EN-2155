@@ -155,8 +155,6 @@
     <Content Include="Content\ENFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\titleFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

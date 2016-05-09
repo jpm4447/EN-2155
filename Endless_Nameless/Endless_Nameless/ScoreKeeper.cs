@@ -36,7 +36,7 @@ namespace Endless_Nameless
 
         //Method for updating the scores if need be
         public void UpdateScores(double time)
-        { 
+        {
             //Creation of a new stream
             timeWriter = new StreamWriter("Best_Times.txt");
 
@@ -44,13 +44,13 @@ namespace Endless_Nameless
             if (highScores.Count > 0)
             {
                 //If there are it loops through each item in the list
-                foreach(double highScore in highScores)
+                foreach (double highScore in highScores)
                 {
                     //Checks to see if the new time is higher than the one in the list
-                    if(time >= highScore)
+                    if (time >= highScore)
                     {
                         //Checks to see if there are under 5 high scores
-                        if(HighScores.Count < 5)
+                        if (HighScores.Count < 5)
                         {
                             //Inserts the new score into the list
                             highScores.Insert(highScores.IndexOf(highScore), time);
@@ -65,7 +65,7 @@ namespace Endless_Nameless
                         break;
                     }
                 }
-                
+
                 if (highScores.Count < 5 && highScores.Contains(time) == false)
                 {
                     highScores.Add(time);

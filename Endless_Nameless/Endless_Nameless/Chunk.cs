@@ -81,7 +81,7 @@ namespace Endless_Nameless
                 {
                     if (layout[x, y] == 1 && count < platformAmount)
                     {
-                        platform[count] = generate.SetPlatform((2560 + (x * 320)), (768 - ((y + 1) * 128)), texture);
+                        platform[count] = generate.SetPlatform(((x * 320)), (768 - ((y + 1) * 128)), texture);
                         count++;
                     }
                 }
@@ -112,9 +112,9 @@ namespace Endless_Nameless
             {
                 for (int y = 0; y < 6; y++)
                 {
-                    if (layout[x, y] == 1 && count < platformAmount)
+                    if (layout[x, y] == 1)
                     {
-                        platform[count] = generate.SetPlatform((2560 + (x * 320)), (768 - ((y + 1) * 128)), texture);
+                        platform[count] = generate.SetPlatform(((x * 320)), (768 - ((y + 1) * 128)), texture);
                         count++;
                     }
                 }
@@ -178,6 +178,15 @@ namespace Endless_Nameless
             for (int x = 0; x < platform.Length; x++)
             {
                 platform[x].PlatformStart();
+            }
+        }
+
+        // draw out platforms
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            for (int x = 0; x < platform.Length; x++)
+            {
+                spriteBatch.Draw(texture, platform[x].CollisionBox, Color.White);
             }
         }
     }
