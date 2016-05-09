@@ -2,20 +2,26 @@ v 0.5.0
 
 	Additions
 
--Game Over fully implemented as desired
--Options added to menu
+- Infinite scrolling using the chunk functionality
+- Speed Constant variable (located at the very top of the )
 
 	Changes
 
--Graphic overhaul (so long, placeholders!)
+- Renamed the platforms list in Game1.cs to platformList as well as changed how 
+  the list fnctions in the game
+
+	Fixes
+
+- Infinite scrolling and drawing has been fixed, it has now been fully implemented
 
 	Bugs and Issues
 
--Reset button does not work, perhaps an issue with calling keeper.ResetScores()?
+- Animations bugged
+- If "Best_Times.txt" file is deleted the game crashes while re-creating it
+	-Works fine after relaunch
+- Game is very easy currently, will make new source files to compensate
 
-
-
-
+---------------------------------------------------------------------------------
 v 0.4.0
 
 	Additions

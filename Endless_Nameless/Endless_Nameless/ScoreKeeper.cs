@@ -65,12 +65,6 @@ namespace Endless_Nameless
                         break;
                     }
                 }
-                
-                if (highScores.Count < 5 && highScores.Contains(time) == false)
-                {
-                    highScores.Add(time);
-                }
-
                 //Writes each new score out to the file
                 foreach (double score in highScores)
                 {
@@ -103,7 +97,6 @@ namespace Endless_Nameless
                 timeWriter.Flush();
             }
 
-            highScores = new List<double>();
             timeWriter.Close();
         }
 
