@@ -55,11 +55,29 @@ namespace Endless_Nameless
         int eW = 200;
         int eH = 50;
 
+        Button playAgainButton;
+        Texture2D playAgain;
+        Texture2D playSelect;
+        int pX, pY;
+        int pW = 200;
+        int pH = 50;
+
+        Button reset;
+        Texture2D resetTexture;
+        Texture2D resetSelect;
+        int rX, rY;
+        int rW = 200;
+        int rH = 50;
+
         MouseState mStatePrev;
         MouseState mouseState;
 
-        SpriteFont font;
-        Vector2 fontLoc;
+        SpriteFont mainFont;
+        SpriteFont titleFont;
+        SpriteFont scoreFont;
+        Vector2 titleFontLoc;
+        Vector2 optionFontLoc;
+        Vector2 gameOverFontLoc;
 
         // chunk generation sources
         string[] chunkSource = new string[16];
@@ -74,7 +92,8 @@ namespace Endless_Nameless
         enum MenuMode
         {
             Main,
-            Options
+            Options,
+            GameOver
         }
         MenuMode menuMode;
 
@@ -112,11 +131,6 @@ namespace Endless_Nameless
             // Make mouse visible
             this.IsMouseVisible = true;
 
-            // Original menu mode is "main"
-            menuMode = MenuMode.Main;
-            // Original game mode is "menu..." you start at the menu
-            gameMode = GameMode.Menu;
-
             // Initial button placement
             sX = GraphicsDevice.Viewport.Width / 2 - 100;
             sY = GraphicsDevice.Viewport.Height / 2 - 100;
@@ -134,8 +148,18 @@ namespace Endless_Nameless
             bY = GraphicsDevice.Viewport.Height / 2;
             back = new Button(bX, bY, bW, bH);
 
-            // Font location
-            fontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 100, 25);
+            pX = GraphicsDevice.Viewport.Width / 2;
+            pY = GraphicsDevice.Viewport.Height / 2;
+            playAgainButton = new Button(pX, pY, pW, pH);
+
+            rX = GraphicsDevice.Viewport.Width / 2;
+            rY = GraphicsDevice.Viewport.Height / 2;
+            reset = new Button(rX, rY, rW, rH);
+
+            // Font locations
+            titleFontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 390, 25);
+            optionFontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 85, 25);
+            gameOverFontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 85, 25);
 
             //Initialization of the player and platforms
             coord = new Vector2(100, 100);
@@ -193,7 +217,13 @@ namespace Endless_Nameless
             exitSelect = Content.Load<Texture2D>("exitSelect");
             backButton = Content.Load<Texture2D>("backbutton");
             backSelect = Content.Load<Texture2D>("backSelect");
-            font = Content.Load<SpriteFont>("mainFont");
+            playAgain = Content.Load<Texture2D>("playagain");
+            playSelect = Content.Load<Texture2D>("playagainSelect");
+            resetTexture = Content.Load<Texture2D>("resetbutton");
+            resetSelect = Content.Load<Texture2D>("resetSelect");
+            mainFont = Content.Load<SpriteFont>("ENFont");
+            scoreFont = Content.Load<SpriteFont>("mainFont");
+            titleFont = Content.Load<SpriteFont>("titleFont");
 
             // Chunk generation sources
             chunkSource[0] = "start.txt";
@@ -245,9 +275,21 @@ namespace Endless_Nameless
                     exit.Rect = new Rectangle(eX, eY, eW, eH);
 
                     bX = GraphicsDevice.Viewport.Width / 2 - 100;
-                    bY = GraphicsDevice.Viewport.Height / 2;
+                    bY = GraphicsDevice.Viewport.Height / 2 + 100;
                     back.Texture = backButton;
                     back.Rect = new Rectangle(bX, bY, bW, bH);
+
+                    pX = GraphicsDevice.Viewport.Width / 2 - 100;
+                    pY = GraphicsDevice.Viewport.Height / 2;
+                    playAgainButton.Texture = playAgain;
+                    playAgainButton = new Button(pX, pY, pW, pH);
+                    playAgainButton.Rect = new Rectangle(pX, pY, pW, pH);
+
+                    rX = GraphicsDevice.Viewport.Width / 2 - 100;
+                    rY = GraphicsDevice.Viewport.Height / 2;
+                    reset.Texture = resetTexture;
+                    reset = new Button(rX, rY, rW, rH);
+                    reset.Rect = new Rectangle(rX, rY, rW, rH);
 
                     // Get mouse state
                     mouseState = Mouse.GetState();
@@ -328,6 +370,7 @@ namespace Endless_Nameless
                     if (menuMode == MenuMode.Options)
                     {
                         bool clicked;
+                        reset.Texture = resetTexture;
 
 
                         // Options button was clicked, mouse released
@@ -354,8 +397,84 @@ namespace Endless_Nameless
                         {
                             menuMode = MenuMode.Main;
                         }
+
+                        // Reset Scores
+                        if (mouseState.X <= reset.Rect.X + reset.Rect.Width
+                            && mouseState.X >= reset.Rect.X
+                            && mouseState.Y <= reset.Rect.Y + reset.Rect.Height
+                            && mouseState.Y >= reset.Rect.Y
+                            && mouseState.LeftButton == ButtonState.Pressed
+                            && clicked == false)
+                        {
+                            keeper.ResetScores();
+                        }
+
+                        // Hovering over reset button highlights it
+                        if (mouseState.X <= reset.Rect.X + reset.Rect.Width
+                                    && mouseState.X >= reset.Rect.X
+                                    && mouseState.Y <= reset.Rect.Y + reset.Rect.Height
+                                    && mouseState.Y >= reset.Rect.Y)
+                        {
+                            reset.Texture = resetSelect;
+                        }
+
                         mStatePrev = mouseState;
                     }
+
+                    // Game Over menu
+                    if (menuMode == MenuMode.GameOver)
+                    {
+                        playAgainButton.Texture = playAgain;
+                        // Get mouse state
+                        mouseState = Mouse.GetState();
+
+                        // Hovering over buttons highlights them
+                        if (mouseState.X <= back.Rect.X + back.Rect.Width
+                                    && mouseState.X >= back.Rect.X
+                                    && mouseState.Y <= back.Rect.Y + back.Rect.Height
+                                    && mouseState.Y >= back.Rect.Y)
+                        {
+                            back.Texture = backSelect;
+                        }
+
+                        if (mouseState.X <= playAgainButton.Rect.X + playAgainButton.Rect.Width
+                                    && mouseState.X >= playAgainButton.Rect.X
+                                    && mouseState.Y <= playAgainButton.Rect.Y + playAgainButton.Rect.Height
+                                    && mouseState.Y >= playAgainButton.Rect.Y)
+                        {
+                            playAgainButton.Texture = playSelect;
+                        }
+
+                        if (mouseState.LeftButton == ButtonState.Pressed && mStatePrev.LeftButton == ButtonState.Released)
+                        {
+                            // Play again
+                            if (mouseState.X <= playAgainButton.Rect.X + playAgainButton.Rect.Width
+                                && mouseState.X >= playAgainButton.Rect.X
+                                && mouseState.Y <= playAgainButton.Rect.Y + playAgainButton.Rect.Height
+                                && mouseState.Y >= playAgainButton.Rect.Y)
+                            {
+                                // generates starting chunks
+                                currChunk = new Chunk(chunkSource[0], groundImg);
+                                currChunk.ChunkStart();
+                                prevChunk = new Chunk(chunkSource[0], groundImg);
+
+
+                                gameMode = GameMode.Game;
+                            }
+
+                            // Back
+                            if (mouseState.X <= option.Rect.X + back.Rect.Width
+                                && mouseState.X >= back.Rect.X
+                                && mouseState.Y <= back.Rect.Y + back.Rect.Height
+                                && mouseState.Y >= back.Rect.Y)
+                            {
+                                menuMode = MenuMode.Main;
+                            }
+                        }
+
+                        mStatePrev = mouseState;
+                    }
+                    
                     break;
 
                 case GameMode.Game:
@@ -451,7 +570,7 @@ namespace Endless_Nameless
             switch(gameMode)
             {
                 case GameMode.Menu:
-                    GraphicsDevice.Clear(Color.LightGreen);
+                    GraphicsDevice.Clear(Color.Gray);
 
                     // TODO: Add your drawing code here
 
@@ -463,6 +582,9 @@ namespace Endless_Nameless
                             break;
                         case MenuMode.Options:
                             Options();
+                            break;
+                        case MenuMode.GameOver:
+                            GameOver();
                             break;
                     }
                     break;
@@ -477,6 +599,8 @@ namespace Endless_Nameless
                     {
                         spriteBatch.Draw(groundImg, plat.CollisionBox, Color.White);
                     }
+                    //Shows the amount of time the player has been alive for
+                    spriteBatch.DrawString(scoreFont, "Time alive:  " + String.Format("{0 : 0.00}", timer), new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 0), Color.Black);
 
 
                     player1.Draw(spriteBatch, playerImage);                      // animated character
@@ -487,21 +611,8 @@ namespace Endless_Nameless
 
                     //Case for when the player loses the game
                 case GameMode.Gameover:
-                    GraphicsDevice.Clear(Color.LightGreen);
-
-                    // Begins the spriteBach
-                    spriteBatch.Begin();
-
-                    spriteBatch.DrawString(font, "You have lasted " + String.Format("{0 : 0.00}", timeLived) + " seconds.", new Vector2(GraphicsDevice.Viewport.Width / 2 - 200, 0), Color.Black);
-                    spriteBatch.DrawString(font, "Best Times:", new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 50), Color.Black);
-
-                    //Prints out each of the top high scores for the player
-                    foreach(double time in keeper.HighScores)
-                    {
-                        spriteBatch.DrawString(font, keeper.HighScores.IndexOf(time) + 1 + ":  " + String.Format("{0 : 0.00}", time), new Vector2(GraphicsDevice.Viewport.Width / 2 - 100, 100 + (keeper.HighScores.IndexOf(time) * 50)), Color.Black);
-                    }
-
-                    spriteBatch.End();
+                    menuMode = MenuMode.GameOver;
+                    gameMode = GameMode.Menu;
                     break;
             }
             
@@ -510,7 +621,7 @@ namespace Endless_Nameless
         public void Main()
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Endless, Nameless", fontLoc, Color.Black);
+            spriteBatch.DrawString(titleFont, "Endless, Nameless", titleFontLoc, Color.White);
             start.Draw(spriteBatch);
             option.Draw(spriteBatch);
             exit.Draw(spriteBatch);
@@ -520,10 +631,32 @@ namespace Endless_Nameless
         public void Options()
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Options", fontLoc, Color.Black);
+            spriteBatch.DrawString(mainFont, "Options", optionFontLoc, Color.White);
+            spriteBatch.DrawString(scoreFont, "Best Times:", new Vector2(GraphicsDevice.Viewport.Width / 2 - 70, 125), Color.Black);
+            //Prints out each of the top high scores for the player
+            foreach (double time in keeper.HighScores)
+            {
+                spriteBatch.DrawString(scoreFont, keeper.HighScores.IndexOf(time) + 1 + ":  " + String.Format("{0 : 0.00}", time), new Vector2(GraphicsDevice.Viewport.Width / 2 - 50, 175 + (keeper.HighScores.IndexOf(time) * 50)), Color.Black);
+            }
+            reset.Draw(spriteBatch);
             back.Draw(spriteBatch);
             spriteBatch.End();
         }
+        public void GameOver()
+        {
+            spriteBatch.Begin();
+            spriteBatch.DrawString(scoreFont, "You lasted " + String.Format("{0 : 0.00}", timeLived) + " seconds.", new Vector2(GraphicsDevice.Viewport.Width / 2 - 160, 50), Color.Black);
+            spriteBatch.DrawString(scoreFont, "Best Times:", new Vector2(GraphicsDevice.Viewport.Width / 2 - 70, 125), Color.Black);
+            //Prints out each of the top high scores for the player
+            foreach (double time in keeper.HighScores)
+            {
+                spriteBatch.DrawString(scoreFont, keeper.HighScores.IndexOf(time) + 1 + ":  " + String.Format("{0 : 0.00}", time), new Vector2(GraphicsDevice.Viewport.Width / 2 - 50, 175 + (keeper.HighScores.IndexOf(time) * 50)), Color.Black);
+            }
+            back.Draw(spriteBatch);
+            playAgainButton.Draw(spriteBatch);
+            spriteBatch.End();
+        }
+
 
     }
 }
