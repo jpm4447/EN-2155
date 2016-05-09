@@ -1,0 +1,133 @@
+v 0.5.0
+
+	Additions
+
+- Infinite scrolling using the chunk functionality
+- Speed Constant variable (located at the very top of the )
+
+	Changes
+
+- Renamed the platforms list in Game1.cs to platformList as well as changed how 
+  the list fnctions in the game
+
+	Fixes
+
+- Infinite scrolling and drawing has been fixed, it has now been fully implemented
+
+	Bugs and Issues
+
+- Animations bugged
+- If "Best_Times.txt" file is deleted the game crashes while re-creating it
+	-Works fine after relaunch
+- Game is very easy currently, will make new source files to compensate
+
+---------------------------------------------------------------------------------
+v 0.4.0
+
+	Additions
+
+-Implemented new ScoreKeeper class
+	-Records up to five of the player's best times
+-Added two new doubles to the game class to handle time the player has been
+alive
+-Implemented game over screen
+	-Displays current run's time
+	-Displays Best run times
+
+	Changes
+
+-Added the current time alive for in game (located in the top middle)
+
+	Fixes
+
+-Spawning temporarily re-fixed
+
+	Bugs and Issues
+
+-Chunk generation not working
+-Animations bugged
+-If "Best_Times.txt" file is deleted the game crashes while re-creating it
+	-Works fine after relaunch
+
+--------------------------------------------------------------------
+
+
+v. 0.3.0
+
+	Additions
+
+-Implemented chunk generation for platforms
+	-Includes platform generation that continues indefinitely
+-Implemented animation for the player
+
+	Bugs and Issues
+
+-Chunk generation not working
+-Animations bugged
+-Spawning broken
+
+--------------------------------------------------------------------
+
+
+v. 0.2.0
+
+	Additions
+
+-Merging of the menus and game classes
+	-Main Menu now appears before playing the game
+	-Contains a temporary options menu
+	-Contains options, exit and play buttons 
+-New Duck method added to the player class to allow for additional
+obstacles to avoid
+-New enum to handle player sprite changes
+
+	Changes
+
+-Reworked platform collisions
+	-Player now rises through the platforms before landing on them
+	-Some slight collision adjustments
+-The updating of the player's y coordinates have been moved to the Update
+method
+-Detection of input for jumping has been moved to the Update method
+	-DetectJump() is now a helper method
+
+--------------------------------------------------------------------
+
+
+v. 0.1.1
+
+	Changes
+
+-Player and Platform images have been updated
+-More platforms have been added
+-Player class's "Move" method has been merged into the "Update" method
+-Addition of a "Fall" method to the player class
+
+	Fixes
+
+-Player now falls when not on a platform
+-Player now stands on top of platforms when landing as opposed to
+merging inside them
+
+--------------------------------------------------------------------
+
+
+v. 0.1
+
+	Additions
+
+-Added Player Class
+	-Player objects can jump and move left and right
+	-Player objects collide with platforms
+-Added Platform Class
+	-Adds the ability to create platforms for the player to stand on
+	-Scroll right to left across the screen with adjustable speed
+
+	Bugs and Issues
+
+-Player
+	-Player will not fall when not on a platform
+	-Player will land partly inside of platforms instead of on top
+	of them
+	-Velocity downwards increases dramatically after the max height is
+	reached
