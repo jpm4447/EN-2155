@@ -1,3 +1,21 @@
+v 0.5.0
+
+	Additions
+
+-Game Over fully implemented as desired
+-Options added to menu
+
+	Changes
+
+-Graphic overhaul (so long, placeholders!)
+
+	Bugs and Issues
+
+-Reset button does not work, perhaps an issue with calling keeper.ResetScores()?
+
+
+
+
 v 0.4.0
 
 	Additions
