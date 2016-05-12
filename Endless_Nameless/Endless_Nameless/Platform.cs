@@ -29,7 +29,7 @@ namespace Endless_Nameless
             obstacleSpawn = rand.Next(2);
             timer = 0;
 
-            if (obstacleSpawn == 0)
+            if (obstacleSpawn == 0 && collisionBox.X > 600)
             {
                 obst = new Obstacle(this, img);
             }
