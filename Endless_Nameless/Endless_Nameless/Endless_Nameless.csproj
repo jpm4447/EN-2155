@@ -42,6 +42,7 @@
     <Compile Include="Chunk.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Generation.cs" />
+    <Compile Include="Obstacle.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

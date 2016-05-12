@@ -142,11 +142,21 @@ namespace Endless_Nameless
         }
 
         // method
-        public void Update(GameTime gameTime, int speed)
+        public void Update(GameTime gameTime, int speed, double currTime)
         {
             foreach(Platform p in platform)
             {
-                p.Update(gameTime, speed);
+                for(int i = 0; i < platform.Length; i++)
+                {
+                    if(p.Obst != null)
+                    {
+                        if (p.Obst.CollisionBox.Intersects(platform[i].CollisionBox))
+                        {
+                            p.Obst = null;
+                        }
+                    }
+                }
+                p.Update(gameTime, speed, currTime);
             }
         }
 
@@ -169,6 +179,11 @@ namespace Endless_Nameless
             for(int x = 0; x < platform.Length; x++)
             {
                 platform[x].PlatformPlace();
+
+                if (platform[x].Obst != null)
+                {
+                    platform[x].Obst.ObstaclePlace();
+                }
             }
         }
 
@@ -178,6 +193,12 @@ namespace Endless_Nameless
             for (int x = 0; x < platform.Length; x++)
             {
                 platform[x].PlatformStart();
+
+                if(platform[x].Obst != null)
+                {
+                    platform[x].Obst.ObstacleStart();
+                }
+                
             }
         }
 
@@ -187,6 +208,10 @@ namespace Endless_Nameless
             for (int x = 0; x < platform.Length; x++)
             {
                 spriteBatch.Draw(texture, platform[x].CollisionBox, Color.White);
+                if(platform[x].Obst != null)
+                {
+                    spriteBatch.Draw(texture, platform[x].Obst.CollisionBox, Color.White);
+                }
             }
         }
     }
