@@ -1,3 +1,19 @@
+v. 0.6.1
+
+	Fixes
+
+-Obstacles no longer spawn inside of other platforms
+-Highscore list should no longer skip scores
+
+	Bugs and Issues
+
+-If timed correctly the player can pull off a boosted jump upon landing
+-Obstacles can still spawn at the start for a brief second causing a
+gameover
+
+--------------------------------------------------------------------
+
+
 v. 0.6.0
 
 	Additions
@@ -49,6 +65,7 @@ v. 0.5.0
 
 -Game Over fully implemented as desired
 -Options added to menu
+-Infinite generation working
 
 	Changes
 

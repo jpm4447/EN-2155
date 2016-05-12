@@ -146,6 +146,16 @@ namespace Endless_Nameless
         {
             foreach(Platform p in platform)
             {
+                for(int i = 0; i < platform.Length; i++)
+                {
+                    if(p.Obst != null)
+                    {
+                        if (p.Obst.CollisionBox.Intersects(platform[i].CollisionBox))
+                        {
+                            p.Obst = null;
+                        }
+                    }
+                }
                 p.Update(gameTime, speed, currTime);
             }
         }

@@ -47,7 +47,7 @@ namespace Endless_Nameless
                 foreach (double highScore in highScores)
                 {
                     //Checks to see if the new time is higher than the one in the list
-                    if (time >= highScore)
+                    if (time > highScore)
                     {
                         //Checks to see if there are under 5 high scores
                         if (HighScores.Count < 5)

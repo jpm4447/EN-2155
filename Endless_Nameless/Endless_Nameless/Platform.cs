@@ -43,9 +43,11 @@ namespace Endless_Nameless
 
         }
 
+        //Property to get and set the Obstacle object
         public Obstacle Obst
         {
             get { return obst; }
+            set { obst = value; }
         }
 
         //Update method to allow for scrolling:  Accepts a speed integer for adjusting how fast the platforms scroll
