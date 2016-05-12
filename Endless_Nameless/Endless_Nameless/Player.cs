@@ -122,13 +122,23 @@ namespace Endless_Nameless
         }
 
         //Method to check for upcomming collisions and fix player positioning accordingly
-        public void CheckCollisions(List<Platform> platforms)
+        public Boolean CheckCollisions(List<Platform> platforms)
         {
             float tempY = PosY;
 
             //Checks the player against each platform and stops them if they collide with one
             foreach (Platform plat in platforms)
             {
+                //Obstacle Collision
+                if(plat.Obst != null)
+                {
+                    if (IsColliding(plat.Obst.CollisionBox))
+                    {
+                        veloc = 0;
+                        return true;
+                    }
+                }
+
                 //Checks for collisions with the platform
                 if(IsColliding(plat.CollisionBox))
                 {
@@ -146,6 +156,7 @@ namespace Endless_Nameless
                     }
                 }
             }
+            return false;
         }
 
         /********************|

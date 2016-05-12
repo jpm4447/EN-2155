@@ -169,7 +169,7 @@ namespace Endless_Nameless
             gameOverFontLoc = new Vector2((GraphicsDevice.Viewport.Width / 2) - 85, 25);
 
             //Initialization of the player and platforms
-            coord = new Vector2(100, 100);
+            coord = new Vector2(100, 400);
             player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
             /*
             platforms = new List<Platform>();
@@ -507,15 +507,27 @@ namespace Endless_Nameless
                     break;
 
                 case GameMode.Game:
-                    
+
+                    //Incrementation of the timer to show the correct amount of time the player has been
+                    //alive for
+                    timer += gameTime.ElapsedGameTime.TotalSeconds;
+
                     //Gives the player a velocity downwards
                     player1.Fall();
 
                     //Check for collisions and updates player position if necessary
-                    player1.CheckCollisions(platformList);
+                    if(player1.CheckCollisions(platformList) == true)
+                    {
+                        gameMode = GameMode.Gameover;
+                        player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
 
-                    //Handles player input and position updates for the player
-                    player1.Update(gameTime);
+                        //Assigns the survived time to a new value and updates the score list if need be
+                        timeLived = timer;
+                        keeper.UpdateScores(timeLived);
+
+                        //When the player recieves a gameover the timer is reset
+                        timer = 0;
+                    }
 
                     //Platform position updates
                     /*
@@ -534,8 +546,8 @@ namespace Endless_Nameless
                     */
                    
                     // chunk position updates
-                    currChunk.Update(gameTime, SPEED);
-                    prevChunk.Update(gameTime, SPEED);
+                    currChunk.Update(gameTime, SPEED, timer);
+                    prevChunk.Update(gameTime, SPEED, timer);
 
                     // check if new chunk needs to be generated
                     if (currChunk.CheckChunk() == true)
@@ -559,25 +571,14 @@ namespace Endless_Nameless
                         }
                     }
 
-                    //Temporary code for the event of a game over
-                    //Incrementation of the timer to show the correct amount of time the player has been
-                    //alive for
-                    timer += gameTime.ElapsedGameTime.TotalSeconds;
+                    //Handles player input and position updates for the player
+                    player1.Update(gameTime);
 
                     //Temporary code for the event of a game over
                     if (player1.CollisionRect.Y >= GraphicsDevice.Viewport.Height)
                     {
                         gameMode = GameMode.Gameover;
                         player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
-
-                        /*
-                        platforms[0] = (new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
-                        platforms[1] = (new Platform(new Rectangle(700, 400, 300, 50), groundImg));
-                        platforms[2] = (new Platform(new Rectangle(700, 100, 300, 50), groundImg));
-                        platforms[3] = (new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
-                        platforms[4] = (new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
-                        platforms[5] = (new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
-                        */
 
                         //Assigns the survived time to a new value and updates the score list if need be
                         timeLived = timer;

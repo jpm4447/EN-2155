@@ -1,4 +1,49 @@
-v 0.5.0
+v. 0.6.0
+
+	Additions
+
+-Obstacles have been implemented with a respective class for them
+	-Placed based upon local coordinates of a platform
+	-Should not spawn until after 15 seconds have elapsed
+-Player recieves a gameover upon colliding with an obstacle
+
+	Changes
+
+-The appropriate code has been added to the Platform class to handle
+obstacles
+-The Player class's CheckCollions method has been updated to handle obstacle
+collisions and now returns a boolean for if the player has collided with one
+-Chunk and Platform classes have had an additional paremeter added to their
+update methods to handle the time check for obstacles
+-Player no longer spawns falling
+
+	Bugs and Issues
+
+-Obstacles sometimes spawn on the player before they are deleted therefore
+causing an instant gameover
+-Possible for the player to maintain their jump through gamestates and then
+gain additional velocity causing them to fall through platforms
+
+--------------------------------------------------------------------
+
+
+v. 0.5.1
+
+	Fixes
+
+-Reset button now working
+-New high scores don't need to be higher than the highest score to be
+put in the list
+
+	Bugs and Issues
+
+-Highscore list still has some issues with printing
+	-Error seems to occur when there is more than one of the same score
+
+--------------------------------------------------------------------
+
+
+v. 0.5.0
 
 	Additions
 
@@ -13,10 +58,10 @@ v 0.5.0
 
 -Reset button does not work, perhaps an issue with calling keeper.ResetScores()?
 
+--------------------------------------------------------------------
 
 
-
-v 0.4.0
+v. 0.4.0
 
 	Additions
 
