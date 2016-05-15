@@ -302,3 +302,15 @@ C:\Users\Aphelion\Desktop\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\W
 C:\Users\Aphelion\Desktop\EN-2155-master\Endless_Nameless\Endless_Nameless\obj\x86\Debug\Endless_Nameless.csprojResolveAssemblyReference.cache
 C:\Users\Aphelion\Desktop\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.exe
 C:\Users\Aphelion\Desktop\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Endless_Nameless.pdb
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\playagain.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\playagainSelect.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\resetbutton.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\resetSelect.png
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source10.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source11.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source12.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source7.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source8.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\source9.txt
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\ENFont.xnb
+C:\Users\Aphelion\Downloads\EN-2155-master (1)\EN-2155-master\Endless_Nameless\Endless_Nameless\bin\WindowsGL\Debug\Content\titleFont.xnb

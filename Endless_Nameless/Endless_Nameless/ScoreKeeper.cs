@@ -155,7 +155,10 @@ namespace Endless_Nameless
                 timeWriter.Close();
             }
             //Closes the reader stream
-            timeReader.Close();
+            if (timeReader != null)
+            {
+                timeReader.Close();
+            }
         }
     }
 }

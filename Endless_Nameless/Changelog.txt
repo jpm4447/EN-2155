@@ -1,3 +1,21 @@
+v. 1.0.0
+
+-Game is done
+-Added more chunks
+-Animation revamp
+-Texture revamp
+
+
+v. 0.6.3
+
+	Fixes
+
+-Deleting the "Best_Times.txt" file no longer crashes the game
+-Buttons have been moved to allow the final score to be viewed
+
+--------------------------------------------------------------------
+
+
 v. 0.6.2
 
 	Fixes
