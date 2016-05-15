@@ -170,15 +170,6 @@ namespace Endless_Nameless
             //Initialization of the player and platforms
             coord = new Vector2(100, 400);
             player1 = new Player(coord, image, new Rectangle((int)coord.X, (int)coord.Y, 64, 128));
-            /*
-            platforms = new List<Platform>();
-            platforms.Add(new Platform(new Rectangle((int)coord.X, (int)coord.Y + 300, 300, 50), groundImg));
-            platforms.Add(new Platform(new Rectangle(700, 400, 300, 50), groundImg));
-            platforms.Add(new Platform(new Rectangle(700, 100, 300, 50), groundImg));
-            platforms.Add(new Platform(new Rectangle(1700, 400, 300, 50), groundImg));
-            platforms.Add(new Platform(new Rectangle(2200, 300, 300, 50), groundImg));
-            platforms.Add(new Platform(new Rectangle(2600, 100, 300, 50), groundImg));
-            */
             
             platformList = new List<Platform>();
 
@@ -291,18 +282,18 @@ namespace Endless_Nameless
                     exit.Rect = new Rectangle(eX, eY, eW, eH);
 
                     bX = GraphicsDevice.Viewport.Width / 2 - 100;
-                    bY = GraphicsDevice.Viewport.Height / 2 + 100;
+                    bY = GraphicsDevice.Viewport.Height / 2 + 150;
                     back.Texture = backButton;
                     back.Rect = new Rectangle(bX, bY, bW, bH);
 
                     pX = GraphicsDevice.Viewport.Width / 2 - 100;
-                    pY = GraphicsDevice.Viewport.Height / 2;
+                    pY = GraphicsDevice.Viewport.Height / 2 + 50;
                     playAgainButton.Texture = playAgain;
                     playAgainButton = new Button(pX, pY, pW, pH);
                     playAgainButton.Rect = new Rectangle(pX, pY, pW, pH);
 
                     rX = GraphicsDevice.Viewport.Width / 2 - 100;
-                    rY = GraphicsDevice.Viewport.Height / 2;
+                    rY = GraphicsDevice.Viewport.Height / 2 + 50;
                     reset.Texture = resetTexture;
                     reset = new Button(rX, rY, rW, rH);
                     reset.Rect = new Rectangle(rX, rY, rW, rH);
