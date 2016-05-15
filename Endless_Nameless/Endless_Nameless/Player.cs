@@ -30,8 +30,8 @@ namespace Endless_Nameless
         double timePerFrame = 500;
         int numFrames = 4;
         int framesElapsed;
-        const int PLAYER_HEIGHT = 64;
-        const int PLAYER_WIDTH = 32;
+        const int PLAYER_HEIGHT = 128;
+        const int PLAYER_WIDTH = 64;
 
         enum Animation
         {
@@ -274,7 +274,7 @@ namespace Endless_Nameless
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
-            spriteBatch.Draw(texture, pos, new Rectangle(32 + frame * 64, 0, 64, 128), Color.White);
+            spriteBatch.Draw(texture, pos, new Rectangle(frame * 64, 0, 64, 128), Color.White);
         }
     }
 }

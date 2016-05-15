@@ -48,7 +48,7 @@ namespace Endless_Nameless
                 {
                     if(layout[x,y] == 1 && count < platformAmount)
                     {
-                        platform[count] = generate.SetPlatform((2560 + (x * 320)), (768 - ((y + 1) * 128)), texture);
+                        platform[count] = generate.SetPlatform(((x * 320)), (768 - ((y + 1) * 128)), texture);
                         count++;
                     }
                 }

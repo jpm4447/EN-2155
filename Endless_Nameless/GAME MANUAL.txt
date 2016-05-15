@@ -1,0 +1,7 @@
+Endless Nameless v.1.0
+
+How to Play
+- Start the Game and run it
+- To check the high scores of the game click on the OPTIONS button to bring up the options menu
+- To start playing the game, click on the play game
+- While playing the game avoid obstacles and pits to continue running and last for the longest possible time

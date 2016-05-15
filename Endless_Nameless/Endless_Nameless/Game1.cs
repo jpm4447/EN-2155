@@ -85,8 +85,7 @@ namespace Endless_Nameless
         string[] chunkSource = new string[16];
         Chunk currChunk;
         Chunk prevChunk;
-        Chunk[] chunk;
-        const int CHUNK_SOURCE = 7;
+        const int CHUNK_SOURCE = 11;
 
         Random rando = new Random();
 
@@ -244,6 +243,12 @@ namespace Endless_Nameless
             chunkSource[4] = "source4.txt";
             chunkSource[5] = "source5.txt";
             chunkSource[6] = "source6.txt";
+            chunkSource[7] = "source7.txt";
+            chunkSource[8] = "source8.txt";
+            chunkSource[9] = "source9.txt";
+            chunkSource[10] = "source10.txt";
+            chunkSource[11] = "source11.txt";
+            chunkSource[12] = "source12.txt";
 
         }
 
